@@ -9,8 +9,8 @@ require 'minitest/autorun'
 describe "Movie rentals" do
   def setup
     @c = Customer.new("Jane")
-    @m1 = Movie.new("1984", 0)
-    @m2 = Movie.new("Platoon", 1)
+    @m1 = RegularMovie.new("1984")
+    @m2 = NewReleaseMovie.new("Platoon")
     @r1 = Rental.new(@m1, 2)
     @r2 = Rental.new(@m2, 3)
     @c.add_rental(@r1)

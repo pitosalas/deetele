@@ -13,24 +13,30 @@ class Customer
 
   def statement
     total_amount, frequent_renter_points = 0, 0
-    result = "Rental Record for #{@name}\n"
+    result = statement_hdr()
 
     @rentals.each do |rental|
       frequent_renter_points += rental.points_for_freq_renters
 
       # show figures for this rental
-      result += "\t" + rental.movie.title + "\t" + rental.charge.to_s + "\n"
+      result += statement_line(rental.movie.title, rental.charge.to_s)
       total_amount += rental.charge
     end
 
     # add footer lines
-    result += "Amount owed is #{total_amount}\n"
-    result += "You earned #{frequent_renter_points} frequent renter points"
-    result
+    result += statement_ftr(total_amount, frequent_renter_points)
   end
 
-  def amount_for(rental)
-    rental.charge
+  def statement_hdr
+    "Rental Record for #{@name}\n"
+  end
+
+  def statement_line(title, charge)
+    "\t#{title}\t#{charge}\n"
+  end
+
+  def statement_ftr(tot_amt, freq_points)
+    "Amount owed is #{tot_amt}\nYou earned #{freq_points} frequent renter points"
   end
 
 

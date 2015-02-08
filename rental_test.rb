@@ -1,6 +1,9 @@
 require_relative 'movie'
 require_relative 'rental'
 require_relative 'customer'
+require 'pry'
+require 'pry-byebug'
+
 require 'minitest/autorun'
 
 describe "Movie rentals" do
